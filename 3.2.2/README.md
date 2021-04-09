@@ -24,8 +24,8 @@ Facturae factura = factory.createFacturae(
         //Seller
         factory.createBusinessType(
             factory.createTaxIdentificationType(
-                PersonTypeCodeType.J,
-                ResidenceTypeCodeType.R,
+                PersonTypeCodeType.LEGAL_ENTITY,
+                ResidenceTypeCodeType.SPAIN,
                 "XXX16653813"
             )
         ).setLegalEntity(factory.createLegalEntityType()
@@ -47,14 +47,14 @@ Facturae factura = factory.createFacturae(
         //Buyer
         factory.createBusinessType(
             factory.createTaxIdentificationType(
-                PersonTypeCodeType.J,
-                ResidenceTypeCodeType.R,
+                PersonTypeCodeType.LEGAL_ENTITY,
+                ResidenceTypeCodeType.SPAIN,
                 "XXX16653813"
             )
         ).setAdministrativeCentres(factory.createAdministrativeCentresType(Arrays.asList(
             factory.createAdministrativeCentreType()
                 .setCentreCode("1234")
-                .setRoleTypeCode("01")
+                .setRoleTypeCode(RoleTypeCodeType.FISCAL)
                 .setAddressInSpain(factory.createAddressType(
                     "Av. Barcelona 155",
                     "12345",
@@ -64,7 +64,7 @@ Facturae factura = factory.createFacturae(
                 )),
             factory.createAdministrativeCentreType()
                 .setCentreCode("1589")
-                .setRoleTypeCode("02")
+                .setRoleTypeCode(RoleTypeCodeType.RECEIVER)
                 .setAddressInSpain(factory.createAddressType(
                     "Av. Barcelona 156",
                     "12345",
@@ -78,8 +78,8 @@ Facturae factura = factory.createFacturae(
         factory.createInvoiceType(
             factory.createInvoiceHeaderType(
                 "202101N030960",
-                InvoiceDocumentTypeType.FC,
-                InvoiceClassType.OO
+                InvoiceDocumentTypeType.COMPLETE_INVOICE,
+                InvoiceClassType.ORIGINAL_INVOICE
             ),
             factory.createInvoiceIssueDataType(
                 getXmlGregorianCalendar("2021-01-07"),
@@ -96,7 +96,7 @@ Facturae factura = factory.createFacturae(
             ,
             factory.createInvoiceTypeTaxesOutputs(Arrays.asList(
                 factory.createTaxOutputType(
-                    "01",
+                    TaxTypeCodeType.VALUE_ADDED_TAX,
                     factory.createAmountType().setTotalAmount(648)
                 )
                 .setTaxAmount(factory.createAmountType().setTotalAmount(136.08))
@@ -117,7 +117,7 @@ Facturae factura = factory.createFacturae(
                     "Item 1",
                     factory.createInvoiceLineTypeTaxesOutputs(Arrays.asList(
                         factory.createInvoiceLineTypeTaxesOutputsTax(
-                            "01",
+                            TaxTypeCodeType.VALUE_ADDED_TAX,
                             factory.createAmountType().setTotalAmount(65.75)
                         ).setTaxRate(21)
                     ))
